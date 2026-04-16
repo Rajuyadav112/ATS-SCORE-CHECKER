@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Ranker Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Resume Ranker <span class="highlight">Pro</span></h1>
+            <p class="subtitle">Instantly analyze your CV and get an ATS-friendly score with actionable feedback.</p>
+        </header>
+
+        <div class="content-wrapper">
+            <main class="main-card glass-panel">
+                <form id="upload-form">
+                    <div class="input-group">
+                        <label for="resume">Upload Resume (PDF only)</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="resume" name="resume" accept="application/pdf" required>
+                            <div class="file-dummy">
+                                <div class="icon">📄</div>
+                                <span class="file-text">Click to browse your PDF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="job-description">Job Description (Optional)</label>
+                        <textarea id="job-description" name="job_description" rows="5" placeholder="Paste the job description here to check keyword matching..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="primary-btn">
+                        <span class="btn-text">Get Your Score</span>
+                        <div class="loader hidden"></div>
+                    </button>
+                    
+                    <div id="error-message" class="error-hidden"></div>
+                </form>
+                
+                <div id="scanner-overlay" class="scanner-hidden">
+                    <div class="scanner-graphic">
+                        <div class="radar"></div>
+                    </div>
+                    <h3 id="scanner-text">Scanning document...</h3>
+                    <p class="scanner-subtext">Please wait while our AI engine analyzes your resume.</p>
+                </div>
+            </main>
+
+            <section id="results-section" class="results-hidden glass-panel">
+                <div class="score-card">
+                    <h2>Your Application Score</h2>
+                    <div class="circular-progress">
+                        <div class="value-container">0</div>
+                    </div>
+                </div>
+                
+                <div class="suggestions-card">
+                    <h2>Detailed Improvement Plan</h2>
+                    <div id="suggestions-grid">
+                        <!-- category cards generated dynamically by JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
